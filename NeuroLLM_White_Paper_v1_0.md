@@ -1,6 +1,6 @@
 # NeuroLLM: Real-Time Modular Orchestration for High-Precision Inference
 
-**White Paper v1.0**
+**White Paper v1.0.8**
 **Author:** Rogério Figurelli
 **Date:** 2025-05-06
 
@@ -8,7 +8,7 @@
 
 NeuroLLM is a neurofunctional orchestration framework designed to revolutionize real-time interaction with large language models (LLMs). Unlike traditional approaches that rely on retrieval-augmented generation (RAG) for accessing external documents, NeuroLLM avoids such dependencies to prioritize real-time responsiveness. Instead, it employs an integrated neural architecture designed to deliver speed, precision, and contextual reasoning entirely through specialized inference paths.
 
-NeuroLLM is a neurofunctional orchestration framework designed to revolutionize real-time interaction with large language models (LLMs). As LLMs become increasingly capable but computationally intensive, the challenge shifts toward delivering intelligent, domain-relevant responses with minimal latency and maximal efficiency. Inspired by the distributed intelligence of biological systems—where organs function independently yet in harmony with the brain—NeuroLLM introduces an adaptive layer that operates between user prompts and foundational models like GPT-4o.
+NeuroLLM is a neurofunctional orchestration framework designed to revolutionize real-time interaction with large language models (LLMs). As LLMs become increasingly capable but computationally intensive, the challenge shifts toward delivering intelligent, domain-relevant responses with minimal latency and maximal efficiency. Inspired by the distributed intelligence of biological systems—where organs function independently yet in harmony with the brain—NeuroLLM introduces an adaptive layer that operates between user prompts and foundational models like GPT-4o \[1].
 
 In this architecture, GPT-4o \[1] acts as the central brain, invoked only for high-abstraction or creative reasoning, while task-specific micro-LLMs serve as autonomous organs responsible for rapid, scoped response generation. A reflexive routing mechanism ensures that inputs are matched to the most appropriate reasoning module, optimizing for speed, cost, and contextual fidelity. The PromptIQ engine \[4] continuously measures output quality, confidence, and timing, enabling the system to self-adjust and improve over time.
 
@@ -24,7 +24,7 @@ The emergence of high-performance foundation models like GPT-4o has redefined wh
 
 NeuroLLM presents a pragmatic and biologically inspired response to these challenges. Rather than treating foundation models as always-on generalists, NeuroLLM treats them as a cerebral cortex—reserved for deep reasoning. It introduces a modular orchestration system where lightweight, purpose-built micro-LLMs take on the majority of tasks. These micro-LLMs are tuned for specific roles, such as factual summarization, extraction, or data structuring, and they operate within tight latency constraints.
 
-The architecture is layered and reflexive. A real-time router—analogous to the spinal cord—determines whether a request can be handled locally or requires escalation to the GPT-4o brain. A PromptIQ engine supervises response quality and guides adaptation across layers. This approach not only accelerates inference but also fosters resilience and domain precision.
+The architecture is layered and reflexive. A real-time router—analogous to the spinal cord—determines whether a request can be handled locally or requires escalation to the GPT-4o brain. A PromptIQ engine \[4] supervises response quality and guides adaptation across layers. This approach not only accelerates inference but also fosters resilience and domain precision.
 
 In doing so, NeuroLLM moves the field closer to a vision where intelligent systems function more like biological organisms: fast, modular, specialized, and capable of scaling intelligence without replicating bulk.
 
@@ -84,15 +84,25 @@ By building NeuroLLM as a true neural orchestration system—functioning like a 
 
 NeuroLLM is governed by a set of foundational principles that ensure its utility in latency-critical, domain-specific, and adaptive applications. These principles reflect not only architectural decisions but also operational philosophy, designed to bridge biological intuition with scalable AI design.
 
-1. **Specialization**: Each micro-LLM is optimized for a distinct class of tasks, such as summarization, classification, or dialogue simplification. This specialization allows the system to use the right tool for the job, increasing precision and reducing computational overhead.
+### 4.1 Specialization
 
-2. **Real-Time First**: NeuroLLM prioritizes deterministic, low-latency execution paths. The system targets an average latency of 100ms or less for common interactions by deploying lightweight inference models locally and reducing reliance on cloud-bound computation.
+Each micro-LLM is optimized for a distinct class of tasks, such as summarization, classification, or dialogue simplification. This specialization allows the system to use the right tool for the job, increasing precision and reducing computational overhead.
 
-3. **Biological Modularity**: Inspired by nervous system architectures, NeuroLLM adopts a decentralized, organ-based design. Micro-LLMs function like autonomous subcomponents, the router operates like a spinal reflex hub, and GPT-4o is treated as a cerebral cortex. This modularity enables fast, context-specific action while maintaining the ability to escalate complex tasks.
+### 4.2 Real-Time First
 
-4. **Cost Awareness**: Instead of invoking a large foundation model for every prompt, NeuroLLM makes intelligent decisions about when such power is necessary. This drastically reduces cloud computation costs and aligns with scalable SaaS and edge deployment models.
+NeuroLLM prioritizes deterministic, low-latency execution paths. The system targets an average latency of 100ms or less for common interactions by deploying lightweight inference models locally and reducing reliance on cloud-bound computation.
 
-5. **Transparency**: Through the PromptIQ engine, every response is paired with a confidence score, processing trace, and latency stamp. This enables detailed auditing, performance tracking, and ongoing reinforcement learning within the system.
+### 4.3 Biological Modularity
+
+Inspired by nervous system architectures, NeuroLLM adopts a decentralized, organ-based design. Micro-LLMs function like autonomous subcomponents, the router operates like a spinal reflex hub, and GPT-4o is treated as a cerebral cortex. This modularity enables fast, context-specific action while maintaining the ability to escalate complex tasks.
+
+### 4.4 Cost Awareness
+
+Instead of invoking a large foundation model for every prompt, NeuroLLM makes intelligent decisions about when such power is necessary. This drastically reduces cloud computation costs and aligns with scalable SaaS and edge deployment models.
+
+### 4.5 Transparency
+
+Through the PromptIQ engine, every response is paired with a confidence score, processing trace, and latency stamp. This enables detailed auditing, performance tracking, and ongoing reinforcement learning within the system.
 
 These principles allow NeuroLLM to operate efficiently in environments ranging from embedded systems and edge networks to full-scale enterprise AI backends, all while maintaining a balance between adaptability, cost, and performance.
 
@@ -159,9 +169,7 @@ NeuroLLM is modeled as a multi-layered reasoning engine, where each layer mirror
 
 Each layer is described below:
 
-### NeuroLLM Architecture
-
-#### 1. Inputs
+### 6.1 Inputs
 
 NeuroLLM ingests input from three primary sources:
 
@@ -169,13 +177,13 @@ NeuroLLM ingests input from three primary sources:
 * **Application Signals and System Hooks**: Internal signals reflecting system state, user session metadata, context history, or event triggers.
 * **Domain-Specific Knowledge Base**: Pre-embedded token maps or semantic structures encoding domain rules, such as legal statutes, financial classifications, or sensor grammars.
 
-#### 2. Input Layer
+### 6.2 Input Layer
 
 The input layer acts as a smart gateway:
 
 * **Gateway and Preprocessor**: Cleans, tokenizes, and standardizes inputs. Extracts metadata such as domain, urgency, or user role and prepares the prompt for scoped processing.
 
-#### 3. Reasoning Layer
+### 6.3 Reasoning Layer
 
 This layer performs scoped decision-making through modular neural agents:
 
@@ -185,7 +193,7 @@ This layer performs scoped decision-making through modular neural agents:
 * **GPT-4o Connector (Brain Layer)**: Invoked for advanced reasoning or compositional synthesis.
 * **PromptIQ Evaluator**: Collects feedback and updates routing heuristics using reinforcement principles.
 
-#### 4. Output Layer
+### 6.4 Output Layer
 
 Responsible for transforming inferences into user-facing results:
 
@@ -193,16 +201,21 @@ Responsible for transforming inferences into user-facing results:
 * **Justification Trace Generator**: Records steps and model choices for audit or review.
 * **Response Latency & Confidence Score**: Annotates each output with quantitative performance metrics.
 
-#### 5. Application Interfaces
+### 6.5 Application Interfaces
 
-NeuroLLM outputs serve across multiple verticals:
+NeuroLLM outputs serve across multiple verticals, categorized as follows:
 
-* **Domain A – Legal, Finance, Medicine**: High-precision structured inference for regulatory environments.
-* **Domain B – SaaS, DevOps, Customer Agents**: High-throughput, human-facing conversational workflows.
-* **Domain C – Robotics, Embedded AI, Autonomous Systems**: Real-time offline-capable reasoning in constrained devices.
-  ├─ **Domain A: Legal, Finance, Medicine** – Structured inference requiring compliance, audits, or precision classification.
-  ├─ **Domain B: SaaS, DevOps, Customer Agents** – High-frequency, conversational or query-based workflows where latency and personalization matter.
-  └─ **Domain C: Robotics, Embedded AI, Autonomous Systems** – Offline-capable decision-making at the edge, often under time or bandwidth constraints.
+#### 6.5.1 Domain A – Legal, Finance, Medicine – Legal, Finance, Medicine
+
+High-precision structured inference designed for environments requiring compliance, auditability, and domain-specific rigor. Use cases include contract parsing, legal summarization, risk classification, and claims automation.
+
+#### 6.5.2 Domain B – SaaS, DevOps, Customer Agents – SaaS, DevOps, Customer Agents
+
+Handles high-throughput, real-time, human-facing queries in SaaS platforms, developer tools, and support environments. Optimized for low latency, context retention, and adaptive tone control.
+
+#### 6.5.3 Domain C – Robotics, Embedded AI, Autonomous Systems – Robotics, Embedded AI, Autonomous Systems
+
+Provides offline-capable, high-efficiency reasoning \[7] for edge computing, IoT devices, and robotics. Supports natural-language command parsing, action validation, and ambient state summarization within constrained environments.
 
 ---
 
@@ -214,7 +227,7 @@ NeuroLLM is especially well-suited to domains where rapid yet context-sensitive 
 
 * **Real-time legal summarization**: Legal research tools integrate legal-specific micro-LLMs for statutes, jurisprudence, and policy matching. These deliver accurate one-sentence summaries or structured responses within 100ms, without relying on external document retrieval. GPT-4o is invoked to generate comprehensive commentary or brief construction when needed.
 
-* **Autonomous vehicles and edge robotics**: Embedded systems employ NeuroLLM to process natural language commands, telemetry-to-action mapping, and anomaly alerts locally, using quantized models. Complex reasoning about intent or cross-modal data is deferred to remote GPT-class models under bandwidth and trust constraints.
+* **Autonomous vehicles and edge robotics**: Embedded systems employ NeuroLLM to process natural language commands, telemetry-to-action mapping, and anomaly alerts locally, using quantized models \[3]. Complex reasoning about intent or cross-modal data is deferred to remote GPT-class models under bandwidth and trust constraints \[5].
 
 * **Medical intake & triage bots**: Deployed in low-connectivity environments (e.g., rural clinics), micro-LLMs infer patient symptom intent and generate appropriate structured forms. These operate fully offline, while GPT-4o support is queued for cloud-confirmed diagnosis escalation.
 
